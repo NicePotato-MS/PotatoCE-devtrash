@@ -1,0 +1,49 @@
+Section          Base   Top    High   Length
+---------------- ------ ------ ------ -------
+.icon            D1A882 D1A99F           11Dh
+.init.libs       D1A99F D1A9F7            58h
+.libs            D1A9F7 D1AA12            1Bh
+.init.clock      D1AA12 D1AA12             0h
+.init.reruncheck D1AA12 D1AA12             0h
+.init            D1AA12 D1AA32            20h
+.fini            D1AA32 D1AA66            34h
+.text            D1AA66 D1AA9D            37h
+.data            D1AA9D D1AA9D             0h
+.rodata          D1AA9D D1AABF            22h
+.init_array      000000 000000             0h
+.ctors           000000 000000             0h
+.dtors           000000 000000             0h
+.fini_array      000000 000000             0h
+.bss             D052C6 D052C6 D13FD8      0h
+.header          D1A87F D1A882             3h
+
+Label                       Value
+-------------------------   ------
+___low_bss                = D052C6
+___len_bss                = 000000
+___heaptop                = D13FD8
+___heapbot                = D052C6
+___libs                   = D1A9F7
+___init_array_count       = 000000
+___ctors_count            = 000000
+___dtors_count            = 000000
+___fini_array_count       = 000000
+__stack                   = D1A87E
+_os_DisableHomeTextBuffer = D1AA66
+_os_EnableHomeTextBuffer  = D1AA78
+_os_GetCSC                = 021D3C
+.missingappvar            = D1AA9D
+.libloadname              = D1AAA2
+.libloadnamelen           = 000007
+.webaddress               = D1AAAA
+__start                   = D1AA12
+___exithl                 = D1AA32
+skip._exit                = D1AA32
+skip.__Exit               = D1AA32
+skip._abort               = D1AA32
+_exit.sp                  = D1AA33
+_exit.flash_wait_states   = D1AA3D
+_main                     = D1AA8A
+lib.LibLoad               = D1A9F7
+_#gfx_Begin               = D1AA0A
+_#gfx_ZeroScreen          = D1AA0E
