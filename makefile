@@ -12,7 +12,8 @@ all: $(SUBDIRS) $(SEND)
 $(SUBDIRS):
 	$(MAKE) -C $@
 	@if [ "$(SEND)" = "true" ]; then \
-		tilp --no-gui $@/bin/$(basename $@).8xp; \
+		tilp -s -n $@/bin/*.8xp; \
+		tilp -s -n $@/bin/*.8xv; \
 	fi 
 	
 

@@ -1,56 +1,56 @@
 	section	.text,"ax",@progbits
 	assume	adl = 1
 	section	.text,"ax",@progbits
-	public	_scrollScreenUp
-_scrollScreenUp:
-	call	__frameset0
-	ld	hl, (ix + 6)
-	ld	bc, 320
-	ld	de, -2883584
-	call	__imulu
-	push	hl
-	pop	bc
-	push	de
-	pop	iy
-	add	iy, bc
-	ld	hl, 76800
-	or	a, a
-	sbc	hl, bc
-	push	hl
-	push	iy
-	push	de
-	call	_memcpy
-	ld	sp, ix
-	pop	ix
-	ret
+	public	_close
+_close:
+	call	_usb_Cleanup
+	jp	_gfx_End
 	section	.text,"ax",@progbits
 
 	section	.text,"ax",@progbits
 	public	_main
 _main:
+	ld	hl, -92
+	call	__frameset
 	call	_gfx_Begin
 	call	_gfx_ZeroScreen
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	call	_gfx_SetTextTransparentColor
+	pop	hl
 	scf
 	sbc	hl, hl
 	push	hl
-	call	_gfx_FillScreen
+	call	_gfx_SetTextFGColor
 	pop	hl
-BB1_1:
-	call	_kb_Scan
-	ld	de, -2883584
-	ld	hl, -2880384
-	ld	bc, 73600
-	ldir
-	ld	hl, 230
+	or	a, a
+	sbc	hl, hl
 	push	hl
-	ld	hl, 2
+	call	_gfx_SetTextBGColor
+	pop	hl
+	ld	hl, 3
 	push	hl
-	ld	hl, -2729728
+	ld	hl, _.str
+	push	hl
+	call	_fontlib_GetFontByIndex
+	pop	de
+	pop	de
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jr	nz, BB1_4
+	ld	hl, _.str.1
+	ld	de, 2
+	push	de
+	push	de
 	push	hl
 	call	_gfx_PrintStringXY
 	pop	hl
 	pop	hl
 	pop	hl
+BB1_2:
+	call	_kb_Scan
 	ld	hl, -720868
 	push	de
 	ld	e, (hl)
@@ -61,22 +61,425 @@ BB1_1:
 	pop	de
 	ld	a, l
 	bit	6, a
-	jr	z, BB1_1
-	call	_gfx_End
+	jr	z, BB1_2
+	call	_close
+	scf
+	jp	BB1_14
+BB1_4:
+	lea	de, ix - 64
+	ld	(ix - 83), de
+	ld	de, 0
+	push	de
+	push	hl
+	call	_fontlib_SetFont
+	pop	hl
+	pop	hl
 	or	a, a
 	sbc	hl, hl
+	push	hl
+	dec	hl
+	push	hl
+	call	_fontlib_SetColors
+	pop	hl
+	pop	hl
+	ld	hl, 1
+	push	hl
+	push	hl
+	call	_fontlib_SetLineSpacing
+	pop	hl
+	pop	hl
+	call	_fontlib_HomeUp
+	ld	hl, 9
+	push	hl
+	call	_fontlib_SetNewlineOptions
+	pop	hl
+	call	_srl_GetCDCStandardDescriptors
+	ld	de, 36106
+	push	de
+	push	hl
+	ld	hl, 0
+	push	hl
+	ld	hl, _handle_usb_event
+	push	hl
+	call	_usb_Init
+	pop	de
+	pop	de
+	pop	de
+	pop	de
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jp	nz, BB1_15
+	lea	hl, ix - 80
+	ld	(ix - 86), hl
+BB1_6:
+	call	_kb_Scan
+	call	_usb_HandleEvents
+	ld	a, (_hasSrlDevice)
+	bit	0, a
+	jp	z, BB1_12
+	ld	hl, 64
+	push	hl
+	ld	hl, (ix - 83)
+	push	hl
+	ld	hl, _srl
+	push	hl
+	call	_srl_Read
+	pop	de
+	pop	de
+	pop	de
+	ld	bc, 255
+	call	__iand
+	push	hl
+	pop	de
+	ld	a, e
+	or	a, a
+	jr	z, BB1_12
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	pop	bc
+BB1_9:
+	push	de
+	pop	hl
+	or	a, a
+	sbc	hl, bc
+	ld	hl, (ix - 83)
+	jr	z, BB1_11
+	add	hl, bc
+	ld	a, (hl)
+	ld	l, a
+	rlc	l
+	sbc	hl, hl
+	ld	l, a
+	push	hl
+	ld	hl, _.str.2
+	push	hl
+	ld	hl, (ix - 86)
+	push	hl
+	ld	(ix - 89), de
+	ld	(ix - 92), bc
+	call	_sprintf
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, (ix - 86)
+	push	hl
+	call	_strlen
+	push	hl
+	pop	de
+	pop	hl
+	ld	bc, (ix - 86)
+	push	bc
+	pop	hl
+	add	hl, de
+	ld.sis	de, 44
+	ld	(hl), e
+	inc	hl
+	ld	(hl), d
+	push	bc
+	call	_fontlib_DrawString
+	ld	bc, (ix - 92)
+	ld	de, (ix - 89)
+	pop	hl
+	inc	bc
+	jr	BB1_9
+BB1_11:
+	push	de
+	push	hl
+	ld	hl, _srl
+	push	hl
+	call	_srl_Write
+	pop	hl
+	pop	hl
+	pop	hl
+BB1_12:
+	ld	hl, -720868
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld	a, l
+	bit	6, a
+	jp	z, BB1_6
+	call	_close
+	or	a, a
+BB1_14:
+	sbc	hl, hl
+	jr	BB1_18
+BB1_15:
+	ld	(ix - 86), hl
+	call	_usb_Cleanup
+	ld	hl, (ix - 86)
+	push	hl
+	ld	hl, _.str.2
+	push	hl
+	ld	hl, (ix - 83)
+	push	hl
+	call	_sprintf
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, (ix - 83)
+	push	hl
+	call	_strlen
+	push	hl
+	pop	de
+	pop	hl
+	ld	bc, (ix - 83)
+	push	bc
+	pop	hl
+	add	hl, de
+	ld.sis	de, 10
+	ld	(hl), e
+	inc	hl
+	ld	(hl), d
+	push	bc
+	ld	hl, _.str.3
+	push	hl
+	call	_strcat
+	pop	hl
+	pop	hl
+	ld	hl, _.str.3
+	push	hl
+	call	_fontlib_DrawString
+	pop	hl
+BB1_16:
+	call	_kb_Scan
+	ld	hl, -720868
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld	a, l
+	bit	6, a
+	jr	z, BB1_16
+	ld	hl, 1
+BB1_18:
+	ld	sp, ix
+	pop	ix
 	ret
 	section	.text,"ax",@progbits
 
+	section	.text,"ax",@progbits
+	private	_handle_usb_event
+_handle_usb_event:
+	ld	hl, -6
+	call	__frameset
+	ld	bc, (ix + 6)
+	ld	de, (ix + 9)
+	ld	hl, (ix + 12)
+	push	hl
+	ld	(ix - 3), de
+	push	de
+	push	bc
+	call	_srl_UsbEventCallback
+	push	hl
+	pop	bc
+	pop	hl
+	pop	hl
+	pop	hl
+	push	bc
+	pop	hl
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jr	nz, BB2_7
+	ld	iy, _srl
+	ld	de, 1
+	ld	hl, (ix + 6)
+	or	a, a
+	sbc	hl, de
+	jr	nz, BB2_4
+	ld	hl, (_srl)
+	ld	de, (ix + 9)
+	or	a, a
+	sbc	hl, de
+	jr	nz, BB2_7
+	push	iy
+	ld	(ix - 6), bc
+	call	_srl_Close
+	ld	bc, (ix - 6)
+	pop	hl
+	ld	hl, -7
+	ld	(_srlErr), hl
+	xor	a, a
+	ld	(_hasSrlDevice), a
+	jr	BB2_7
+BB2_4:
+	ld	de, 2
+	ld	hl, (ix + 6)
+	or	a, a
+	sbc	hl, de
+	ld	(ix - 6), bc
+	jr	nz, BB2_8
+	call	_usb_GetRole
+	ld	a, l
+	bit	4, a
+	ld	hl, (ix + 9)
+	push	hl
+	call	z, _usb_ResetDevice
+	pop	hl
+BB2_6:
+	ld	bc, (ix - 6)
+BB2_7:
+	push	bc
+	pop	hl
+	ld	sp, ix
+	pop	ix
+	ret
+BB2_8:
+	ld	de, 4
+	ld	hl, (ix + 6)
+	or	a, a
+	sbc	hl, de
+	jp	nz, BB2_11
+	call	_usb_GetRole
+	ld	iy, _srl
+	ld	bc, (ix - 6)
+	ld	a, (_hasSrlDevice)
+	bit	4, l
+	jp	nz, BB2_7
+	or	a, a
+	jp	nz, BB2_7
+	jr	BB2_14
+BB2_11:
+	ld	de, 12
+	ld	hl, (ix + 6)
+	or	a, a
+	sbc	hl, de
+	jp	nz, BB2_7
+	ld	a, (_hasSrlDevice)
+	bit	0, a
+	jp	nz, BB2_7
+	ld	hl, 0
+	ld	de, 8
+	push	de
+	push	hl
+	push	hl
+	call	_usb_FindDevice
+	ld	iy, _srl
+	ld	bc, (ix - 6)
+	pop	de
+	pop	de
+	pop	de
+	ld	(ix - 3), hl
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jp	z, BB2_7
+BB2_14:
+	ld	hl, _srlBuf
+	ld	de, 512
+	ld	bc, 9600
+	push	bc
+	ld	bc, -1
+	push	bc
+	push	de
+	push	hl
+	ld	hl, (ix - 3)
+	push	hl
+	push	iy
+	call	_srl_Open
+	pop	de
+	pop	de
+	pop	de
+	pop	de
+	pop	de
+	pop	de
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jr	nz, BB2_16
+	ld	a, 1
+	or	a, a
+	sbc	hl, hl
+	ld	(_srlErr), hl
+	ld	(_hasSrlDevice), a
+	jp	BB2_6
+BB2_16:
+	ld	(_srlErr), hl
+	jp	BB2_6
+	section	.text,"ax",@progbits
+
+	section	.bss,"aw",@nobits
+	public	_hasSrlDevice
+_hasSrlDevice:
+	rb	1
+
+	section	.bss,"aw",@nobits
+	public	_srlErr
+_srlErr:
+	rb	3
+
+	section	.rodata,"a",@progbits
+	private	_.str
+_.str:
+	db	"DRSANS", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.1
+_.str.1:
+	db	"DRSANS appvar not found or invalid", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.2
+_.str.2:
+	db	"%u", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.3
+_.str.3:
+	db	"USB init error ", 0
+
+	section	.bss,"aw",@nobits
+	public	_srl
+_srl:
+	rb	58
+
+	section	.bss,"aw",@nobits
+	public	_srlBuf
+_srlBuf:
+	rb	512
+
 	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 5f8512f22751066573aa48ac848a6d2195838ac3)"
-	extern	_gfx_FillScreen
+	extern	_srl_Open
+	extern	_gfx_SetTextTransparentColor
 	extern	__Unwind_SjLj_Register
-	extern	__Unwind_SjLj_Unregister
-	extern	_gfx_ZeroScreen
+	extern	__frameset
+	extern	_fontlib_GetFontByIndex
+	extern	_usb_FindDevice
+	extern	_srl_Write
+	extern	_usb_ResetDevice
+	extern	_gfx_SetTextBGColor
+	extern	_gfx_SetTextFGColor
+	extern	_srl_GetCDCStandardDescriptors
+	extern	_sprintf
 	extern	_gfx_Begin
-	extern	__imulu
 	extern	_kb_Scan
-	extern	_gfx_PrintStringXY
+	extern	_fontlib_DrawString
+	extern	_srl_Close
+	extern	_fontlib_SetNewlineOptions
+	extern	_fontlib_SetColors
+	extern	_fontlib_SetFont
+	extern	_usb_HandleEvents
+	extern	_strlen
+	extern	_fontlib_HomeUp
+	extern	_usb_GetRole
+	extern	__Unwind_SjLj_Unregister
+	extern	__iand
+	extern	_gfx_ZeroScreen
+	extern	_fontlib_SetLineSpacing
+	extern	_strcat
+	extern	_srl_UsbEventCallback
+	extern	_srl_Read
 	extern	_gfx_End
-	extern	__frameset0
-	extern	_memcpy
+	extern	_gfx_PrintStringXY
+	extern	_usb_Cleanup
+	extern	_usb_Init

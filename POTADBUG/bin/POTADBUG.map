@@ -2,51 +2,87 @@ Section          Base   Top    High   Length
 ---------------- ------ ------ ------ -------
 .icon            D1A882 D1A9A3           121h
 .init.libs       D1A9A3 D1A9FB            58h
-.libs            D1A9FB D1AA30            35h
-.init.clock      D1AA30 D1AA30             0h
-.init.reruncheck D1AA30 D1AA30             0h
-.init            D1AA30 D1AA50            20h
-.fini            D1AA50 D1AA84            34h
-.text            D1AA84 D1AAF9            75h
-.data            D1AAF9 D1AAF9             0h
-.rodata          D1AAF9 D1AB1B            22h
+.libs            D1A9FB D1AAA5            AAh
+.init.clock      D1AAA5 D1AAA5             0h
+.init.reruncheck D1AAA5 D1AAA5             0h
+.init            D1AAA5 D1AAD1            2Ch
+.fini            D1AAD1 D1AB05            34h
+.text            D1AB05 D1AE78           373h
+.data            D1AE78 D1AE78             0h
+.rodata          D1AE78 D1AED7            5Fh
 .init_array      000000 000000             0h
 .ctors           000000 000000             0h
 .dtors           000000 000000             0h
 .fini_array      000000 000000             0h
-.bss             D052C6 D052C6 D13FD8      0h
+.bss             D052C6 D05504 D13FD8    23Eh
 .header          D1A87F D1A882             3h
 
-Label                       Value
--------------------------   ------
-___low_bss                = D052C6
-___len_bss                = 000000
-___heaptop                = D13FD8
-___heapbot                = D052C6
-___libs                   = D1A9FB
-___init_array_count       = 000000
-___ctors_count            = 000000
-___dtors_count            = 000000
-___fini_array_count       = 000000
-__stack                   = D1A87E
-_os_DisableHomeTextBuffer = D1AA84
-_os_EnableHomeTextBuffer  = D1AA96
-.missingappvar            = D1AAF9
-.libloadname              = D1AAFE
-.libloadnamelen           = 000007
-.webaddress               = D1AB06
-__start                   = D1AA30
-___exithl                 = D1AA50
-skip._exit                = D1AA50
-skip.__Exit               = D1AA50
-skip._abort               = D1AA50
-_exit.sp                  = D1AA51
-_exit.flash_wait_states   = D1AA5B
-_main                     = D1AAA8
-lib.LibLoad               = D1A9FB
-_#gfx_Begin               = D1AA0E
-_#gfx_End                 = D1AA12
-_#gfx_FillScreen          = D1AA16
-_#gfx_PrintStringXY       = D1AA1A
-_#gfx_ZeroScreen          = D1AA1E
-_#kb_Scan                 = D1AA2C
+Label                             Value
+-------------------------------   ------
+___low_bss                      = D052C6
+___len_bss                      = 00023E
+___heaptop                      = D13FD8
+___heapbot                      = D05504
+___libs                         = D1A9FB
+___init_array_count             = 000000
+___ctors_count                  = 000000
+___dtors_count                  = 000000
+___fini_array_count             = 000000
+__stack                         = D1A87E
+__frameset                      = D1AB05
+__iand                          = D1AB13
+_os_DisableHomeTextBuffer       = D1AB2C
+_os_EnableHomeTextBuffer        = D1AB3E
+_strcat                         = 0000C0
+_strlen                         = 0000D4
+_sprintf                        = 0000BC
+.missingappvar                  = D1AE78
+.libloadname                    = D1AE7D
+.libloadnamelen                 = 000007
+.webaddress                     = D1AE85
+__start                         = D1AAA5
+___exithl                       = D1AAD1
+skip._exit                      = D1AAD1
+skip.__Exit                     = D1AAD1
+skip._abort                     = D1AAD1
+_exit.sp                        = D1AAD2
+_exit.flash_wait_states         = D1AADC
+_close                          = D1AB50
+_main                           = D1AB58
+_handle_usb_event               = D1AD43
+_hasSrlDevice                   = D052C6
+_srlErr                         = D052C7
+_.str                           = D1AE9A
+_.str.1                         = D1AEA1
+_.str.2                         = D1AEC4
+_.str.3                         = D1AEC7
+_srl                            = D052CA
+_srlBuf                         = D05304
+lib.LibLoad                     = D1A9FB
+_#fontlib_SetFont               = D1AA10
+_#fontlib_SetColors             = D1AA14
+_#fontlib_SetLineSpacing        = D1AA18
+_#fontlib_DrawString            = D1AA1C
+_#fontlib_SetNewlineOptions     = D1AA20
+_#fontlib_GetFontByIndex        = D1AA24
+_#fontlib_HomeUp                = D1AA28
+_#gfx_Begin                     = D1AA35
+_#gfx_End                       = D1AA39
+_#gfx_PrintStringXY             = D1AA3D
+_#gfx_SetTextBGColor            = D1AA41
+_#gfx_SetTextFGColor            = D1AA45
+_#gfx_SetTextTransparentColor   = D1AA49
+_#gfx_ZeroScreen                = D1AA4D
+_#kb_Scan                       = D1AA5B
+_#srl_Open                      = D1AA6A
+_#srl_Close                     = D1AA6E
+_#srl_Read                      = D1AA72
+_#srl_Write                     = D1AA76
+_#srl_GetCDCStandardDescriptors = D1AA7A
+_#srl_UsbEventCallback          = D1AA7E
+_#usb_Init                      = D1AA8D
+_#usb_Cleanup                   = D1AA91
+_#usb_HandleEvents              = D1AA95
+_#usb_FindDevice                = D1AA99
+_#usb_ResetDevice               = D1AA9D
+_#usb_GetRole                   = D1AAA1
