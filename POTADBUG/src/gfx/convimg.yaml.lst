@@ -1,0 +1,7 @@
+global_palette.h
+global_palette.c
+plug_off.h
+plug_off.c
+plug_on.h
+plug_on.c
+gfx.h

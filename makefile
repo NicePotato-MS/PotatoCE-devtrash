@@ -10,6 +10,10 @@ SEND := false
 all: $(SUBDIRS) $(SEND)
 
 $(SUBDIRS):
+	$(MAKE) -C $@ clean
+	rm -f $@/src/gfx/*.c
+	rm -f $@/src/gfx/*.h
+	$(MAKE) -C $@ gfx
 	$(MAKE) -C $@
 	@if [ "$(SEND)" = "true" ]; then \
 		tilp -s -n $@/bin/*.8xp; \
@@ -20,4 +24,6 @@ $(SUBDIRS):
 clean:
 	for dir in $(SUBDIRS); do \
 		$(MAKE) -C $$dir clean; \
-	done
+		rm -f $$dir/src/gfx/*.c; \
+		rm -f $$dir/src/gfx/*.h; \
+	done \

@@ -14,6 +14,7 @@ CXXFLAGS = -Wall -Wextra -Oz
 # font options
 FONTPACKNAME = DRSANS
 FONTDIR = $(SRCDIR)/fonts
+MAKE_GFX = cd $(GFXDIR) && $(CONVIMG)
 
 DEPS = $(BINDIR)/$(FONTPACKNAME).bin $(BINDIR)/$(FONTPACKNAME).8xv
 
