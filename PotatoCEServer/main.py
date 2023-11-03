@@ -40,6 +40,7 @@ async def serial_reader():
         with serial_lock:
             if serial_port:
                 try:
+                    serial_port.write(b'hello')
                     data = serial_port.read_until(b'\0').decode().strip()
                     if data == "MEACK":
                         # Update the poll_cache with the latest poll info

@@ -1,7 +1,11 @@
-global_palette.h
-global_palette.c
-plug_off.h
-plug_off.c
-plug_on.h
-plug_on.c
+dark_palette.h
+dark_palette.c
+light_palette.h
+light_palette.c
+plug_disconnected.h
+plug_disconnected.c
+plug_power.h
+plug_power.c
+plug_serial.h
+plug_serial.c
 gfx.h

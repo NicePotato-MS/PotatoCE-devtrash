@@ -1,1 +1,9 @@
 examples
+*.d
+*.bc
+*.src
+*.bin
+*.map
+*.lst
+*.8xp
+*.8xv

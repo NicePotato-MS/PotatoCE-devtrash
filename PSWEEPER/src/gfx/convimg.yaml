@@ -1,0 +1,63 @@
+palettes:
+  - name: main_palette
+    fixed-entries:
+      - color: {index: 0, r: 192, g: 192, b: 192}   # Bright Grey
+      - color: {index: 1, r: 255, g: 0, b: 128}     # Transparent
+      - color: {index: 2, r: 128, g: 128, b: 128}   # Grey
+      - color: {index: 3, r: 255, g: 255, b: 255}   # White
+      - color: {index: 4, r: 0, g: 0, b: 0}         # Black
+      - color: {index: 5, r: 0, g: 0, b: 255}       # Blue
+      - color: {index: 6, r: 0, g: 128, b: 0}       # Dark Green
+      - color: {index: 7, r: 255, g: 0, b: 0}       # Red
+      - color: {index: 8, r: 0, g: 0, b: 128}       # Dark Blue
+      - color: {index: 9, r: 128, g: 0, b: 0}       # Maroon
+      - color: {index: 10, r: 0, g: 128, b: 128}    # Cyan
+      - color: {index: 11, r: 0, g: 0, b: 128}      # Dark Blue
+      - color: {index: 12, r: 255, g: 255, b: 0}    # Yellow
+      - color: {index: 13, r: 128, g: 128, b: 0}    # Dark Yellow
+    images: automatic
+
+converts:
+  - name: sprites
+    palette: main_palette
+    transparent-color-index: 1
+    images:
+    - face_cool.png    
+    - face_dead.png
+    - face_down.png
+    - face_happy.png
+    - face_shock.png
+    - tile_1.png
+    - tile_2.png
+    - tile_3.png
+    - tile_4.png
+    - tile_5.png
+    - tile_6.png
+    - tile_7.png
+    - tile_8.png
+    - tile_bomb.png
+    - tile_down.png
+    - tile_flag.png
+    - tile_hitbomb.png
+    - tile_nobomb.png
+    - tile_question.png
+    - tile_questiondown.png
+    - tile_up.png
+    - ui_0.png
+    - ui_1.png
+    - ui_2.png
+    - ui_3.png
+    - ui_4.png
+    - ui_5.png
+    - ui_6.png
+    - ui_7.png
+    - ui_8.png
+    - ui_9.png
+outputs:
+  - type: c
+    include-file: gfx.h
+    palettes:
+      - main_palette
+    converts:
+      - sprites
+
