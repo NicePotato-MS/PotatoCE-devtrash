@@ -2,10 +2,12 @@
 # Makefile Options
 # ----------------------------
 
-NAME = POTADBUG
+NAME = PSWEEPER
 ICON = icon.png
-DESCRIPTION = "NicePotato's random debug"
-COMPRESSED = NO
+DESCRIPTION = "Spudsweeper"
+COMPRESSED = YES
+COMPRESSED_MODE = zx7
+LTO = YES
 ARCHIVED = YES
 HAS_PRINTF = NO
 

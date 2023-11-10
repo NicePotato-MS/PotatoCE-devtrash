@@ -1,7 +1,7 @@
 # Main Makefile
 
 # List of subdirectories to build
-SUBDIRS := PHTMLLIB HTMLTEST POTADBUG
+SUBDIRS := PHTMLLIB HTMLTEST POTADBUG PSWEEPER
 SEND := false
 
 

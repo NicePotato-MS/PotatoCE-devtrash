@@ -1,6 +1,11 @@
 #ifndef MAIN_HEADER
 #define MAIN_HEADER
 
+// Condition Codes
+
+#define CONDITION_SUCCESS 0
+#define CONDITION_FONT_LOAD_FAIL -1
+
 // Colors
 
 #define COLOR_BrightGrey 0
@@ -19,7 +24,7 @@
 #define COLOR_DarkBlue 8
 #define COLOR_Maroon 9
 #define COLOR_Cyan 10
-#define COLOR_DarkBlue 11
+#define COLOR_UNKNOWN 11
 #define COLOR_Yellow 12
 #define COLOR_DarkYellow 13
 
