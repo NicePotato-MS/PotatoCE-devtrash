@@ -27,6 +27,7 @@ converts:
     - face_down.png
     - face_happy.png
     - face_shock.png
+    - tile_up.png
     - tile_1.png
     - tile_2.png
     - tile_3.png
@@ -35,14 +36,14 @@ converts:
     - tile_6.png
     - tile_7.png
     - tile_8.png
-    - tile_bomb.png
     - tile_down.png
+    - tile_bomb.png
     - tile_flag.png
+    - tile_flagerror.png
     - tile_hitbomb.png
     - tile_nobomb.png
     - tile_question.png
     - tile_questiondown.png
-    - tile_up.png
     - ui_0.png
     - ui_1.png
     - ui_2.png

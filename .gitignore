@@ -1,11 +1,11 @@
 examples
+tmpdev
 *.d
 *.bc
 *.src
 *.bin
 *.map
 *.lst
-*.8xp
-*.8xv
 **/gfx/*.c
 **/gfx/*.h
+FRANKINI

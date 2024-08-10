@@ -1,2 +1,4 @@
-# PotatoCE
-On calculator assembler for the TI84 Plus CE
+## useful
+
+https://github.com/drdnar/ce-fonts/releases/tag/v20200607-2
+

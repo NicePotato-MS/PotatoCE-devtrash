@@ -2,7 +2,7 @@
 # Makefile Options
 # ----------------------------
 
-NAME = PSWEEPER
+NAME = SPUDSWPR
 ICON = icon.png
 DESCRIPTION = "Spudsweeper"
 COMPRESSED = YES

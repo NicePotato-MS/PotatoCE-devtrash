@@ -1,5 +1,9 @@
 {
     "files.associations": {
-        "stdint.h": "c"
-    }
+        "stdint.h": "c",
+        "keypadc.h": "c",
+        "real": "c",
+        "util.h": "c"
+    },
+    "editor.formatOnType": false
 }

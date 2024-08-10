@@ -1,10 +1,14 @@
 #ifndef MAIN_HEADER
 #define MAIN_HEADER
 
+extern const char *errorcodes[];
+void prgmEnd(int condition);
+
+
 // Condition Codes
 
 #define CONDITION_SUCCESS 0
-#define CONDITION_FONT_LOAD_FAIL -1
+#define CONDITION_FONT_LOAD_FAIL 1
 
 // Colors
 

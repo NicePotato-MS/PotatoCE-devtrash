@@ -1,0 +1,3 @@
+nano
+[?2004hxubuntu@xubuntu:~$ nano
+[?2004l[?2004h(B)0[?1049h[1;24r[m[4l[39;49m[?1h=[?1h=[?25l[39;49m[m[H[J[0;7m  GNU nano 6.2          New Buffer            I      [1;52H[m[22d [0;7m[ Welcome to nano.  For basic help, type Ctrl+G. ][m[23d[0;7m^G[m Help[14G[0;7m^O[m Write Out [0;7m^W[m Where Is  [0;7m^K[m Cut[24d[0;7m^X[m Exit[14G[0;7m^R[m Read File [0;7m^\[m Replace   [0;7m^U[m Paste[2d[0;7m 1[C[m[34h[?25h
